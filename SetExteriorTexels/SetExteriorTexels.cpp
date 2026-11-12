@@ -38,6 +38,7 @@ DAMAGE.
 #include <Misha/Exceptions.h>
 #include <Src/ImageIO.h>
 #include <Src/GradientDomain.h>
+#include <Src/MeshIO.h>
 
 using namespace MishaK;
 using namespace MishaK::TSP;
@@ -119,7 +120,10 @@ int main( int argc , char* argv[] )
 		[&]( size_t t , unsigned int k ){ return mesh.texture.triangles[t][k]; } ,
 		[&]( size_t v ){ return mesh.texture.vertices [v]; } ,
 		texture.res(0) ,
-		texture.res(1)
+		texture.res(1) ,
+		true ,	// normalize
+		false ,	// sanityCheck
+		false	// computeDivergence: only the stiffness matrix is used
 	);
 	if( Verbose.set ) std::cout << pMeter( "Gradient domain" ) << std::endl;
 
